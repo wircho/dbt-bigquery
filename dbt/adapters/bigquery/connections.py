@@ -345,7 +345,7 @@ class BigQueryConnectionManager(BaseConnectionManager):
             return connection
 
         try:
-            handle = cls.get_bigquery_client(connection.credentials)
+            handle: google.cloud.bigquery.Client = cls.get_bigquery_client(connection.credentials)
 
         except google.auth.exceptions.DefaultCredentialsError:
             logger.info("Please log into GCP to continue")
