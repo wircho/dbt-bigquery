@@ -24,6 +24,7 @@ class TestBigQueryScripting(SeedConfigBase):
             "incremental_overwrite_partitions.sql": overwrite_partitions_sql,
             "incremental_overwrite_range.sql": overwrite_range_sql,
             "incremental_overwrite_time.sql": overwrite_time_sql,
+            "incremental_overwrite_day_with_time_ingestion.sql": overwrite_day_with_time_ingestion_sql,
         }
 
     @pytest.fixture(scope="class")
@@ -34,7 +35,8 @@ class TestBigQueryScripting(SeedConfigBase):
             "incremental_overwrite_time_expected.csv": seed_incremental_overwrite_time_expected_csv,
             "incremental_overwrite_date_expected.csv": seed_incremental_overwrite_date_expected_csv,
             "incremental_overwrite_day_expected.csv": seed_incremental_overwrite_day_expected_csv,
-            "incremental_overwrite_range_expected.csv": seed_incremental_overwrite_range_expected_csv
+            "incremental_overwrite_range_expected.csv": seed_incremental_overwrite_range_expected_csv,
+            "incremental_overwrite_day_with_time_partition_expected.csv": seed_incremental_overwrite_day_with_time_partition_expected_csv
         }
 
     def test__bigquery_assert_incrementals(self, project):
@@ -63,4 +65,7 @@ class TestBigQueryScripting(SeedConfigBase):
                                                 f"{db_with_schema}.incremental_overwrite_range_expected"])
         check_relations_equal(project.adapter, [f"{db_with_schema}.incremental_overwrite_day_with_copy_partitions",
                                                 f"{db_with_schema}.incremental_overwrite_day_expected"])
+        check_relations_equal(project.adapter, [f"{db_with_schema}.incremental_overwrite_day_with_time_ingestion",
+                                                f"{db_with_schema}.incremental_overwrite_day_with_time_partition_expected"])
+
 
