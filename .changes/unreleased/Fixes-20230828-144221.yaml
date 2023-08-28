@@ -1,0 +1,6 @@
+kind: Fixes
+body: remove senesitive creds from dbt debug stdout
+time: 2023-08-28T14:42:21.839803-05:00
+custom:
+  Author: McKnight-42
+  Issue: "900"

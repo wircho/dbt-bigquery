@@ -171,6 +171,8 @@ class BigQueryCredentials(Credentials):
     def unique_field(self):
         return self.database
 
+    # the results show up in the output of dbt debug runs, for more see..
+    # https://docs.getdbt.com/guides/dbt-ecosystem/adapter-development/3-building-a-new-adapter#editing-the-connection-manager
     def _connection_keys(self):
         return (
             "method",
